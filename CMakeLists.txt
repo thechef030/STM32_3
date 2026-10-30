@@ -54,9 +54,27 @@ target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user defined include paths
 )
 
+set(STM32_3_TASK "8" CACHE STRING "8/9/10/11=SPI")
+set(STM32_3_RX "0" CACHE STRING "0=master TX, 1=slave RX")
+set(SPI_TEST_BYTE "0x55" CACHE STRING "Fixed byte when cycling is disabled")
+set(SPI_CYCLE_PATTERNS "1" CACHE STRING "1=55/A5/00/FF, 0=fixed byte")
+if(NOT STM32_3_TASK MATCHES "^(8|9|10|11)$")
+ message(FATAL_ERROR "STM32_3_TASK must be 8, 9, 10 or 11; Task12 uses FPGA only")
+endif()
+if(NOT STM32_3_RX MATCHES "^[01]$" OR NOT SPI_CYCLE_PATTERNS MATCHES "^[01]$")
+ message(FATAL_ERROR "STM32_3_RX and SPI_CYCLE_PATTERNS must be 0 or 1")
+endif()
+if((STM32_3_TASK STREQUAL "11" AND NOT STM32_3_RX STREQUAL "1") OR
+   (STM32_3_TASK MATCHES "^(8|10)$" AND NOT STM32_3_RX STREQUAL "0"))
+ message(FATAL_ERROR "Task8/10 require TX; Task11 requires RX")
+endif()
+
 # Add project symbols (macros)
 target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
-    # Add user defined symbols
+    STM32_3_TASK=${STM32_3_TASK}
+    STM32_3_RX=${STM32_3_RX}
+    SPI_TEST_BYTE=${SPI_TEST_BYTE}
+    SPI_CYCLE_PATTERNS=${SPI_CYCLE_PATTERNS}
 )
 
 # Remove wrong libob.a library dependency when using cpp files

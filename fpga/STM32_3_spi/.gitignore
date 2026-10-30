@@ -1,0 +1,6 @@
+vivado_*/
+.Xil/
+*.jou
+*.log
+sim/*.vvp
+sim/*.vcd

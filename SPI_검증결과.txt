@@ -1,0 +1,18 @@
+검증 결과 (2026-10-29)
+
+프로젝트: C:/Users/tjgus/stm32_3
+MCU 빌드: Task8, Task9_TX, Task9_RX, Task10, Task11 모두 성공.
+빌드 로그: build/spi_checks/*-build.log
+FPGA Icarus 시뮬레이션: ALL SPI TESTS PASS.
+테스트 로그: fpga/STM32_3_spi/sim/test_result.txt
+확인 항목: 전체 256바이트 수신, CS 중단 복구, 연속 바이트, 리셋,
+500kHz 송신 비트 순서/클록/CS 타이밍, FIFO와 9600baud ASCII 출력.
+
+Vivado 자동 합성: 실행 환경 오류로 미확인.
+오류: [Common 17-354] Could not open 'C' for writing.
+비트스트림 생성, 다운로드, 실제 보드 수신 및 파형 측정은 아직 수행하지 않음.
+
+stm32_2의 CMakeLists.txt, CMakePresets.json, ece2_474.code-workspace는
+이번 작업 전 백업과 바이트 단위로 동일함을 확인.
+이번에 추가한 SPI 코드와 Task8~11 생성 폴더는 stm32_2에서 제거됨.
+이전 실습 매뉴얼(docs)은 원래 있던 자료로 그대로 보존.

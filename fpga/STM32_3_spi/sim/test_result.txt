@@ -1,0 +1,5 @@
+PASS master: 8 frames, 500kHz, 8 rising edges, MSB first, setup/hold, reset
+PASS slave: all 256 bytes, CS abort, continuous bytes, reset recovery
+PASS receiver top: 4 queued SPI bytes -> RX=55/A5/00/FF CRLF at 9600 baud
+ALL SPI TESTS PASS
+sim/tb_spi_system.sv:141: $finish called at 29128970000 (1ps)

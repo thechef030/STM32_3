@@ -1,38 +1,133 @@
 {
-    "version": 3,
-    "configurePresets": [
-        {
-            "name": "default",
-            "hidden": true,
-            "generator": "Ninja",
-            "binaryDir": "${sourceDir}/build/${presetName}",
-		    "toolchainFile": "${sourceDir}/cmake/gcc-arm-none-eabi.cmake",
-            "cacheVariables": {
-            }
-        },
-        {
-            "name": "Debug",
-            "inherits": "default",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Debug"
-            }
-        },
-        {
-            "name": "Release",
-            "inherits": "default",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Release"
-            }
-        }
-    ],
-    "buildPresets": [
-        {
-            "name": "Debug",
-            "configurePreset": "Debug"
-        },
-        {
-            "name": "Release",
-            "configurePreset": "Release"
-        }
-    ]
+  "version": 3,
+  "configurePresets": [
+    {
+      "name": "default",
+      "hidden": true,
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "toolchainFile": "${sourceDir}/cmake/gcc-arm-none-eabi.cmake",
+      "cacheVariables": {
+        "CMAKE_MAKE_PROGRAM": "C:/Users/tjgus/stm32_lab/.tools/bundles/ninja/1.13.2+st.1/bin/ninja.exe"
+      },
+      "environment": {
+        "PATH": "C:/Users/tjgus/stm32_lab/.tools/bin;C:/Users/tjgus/stm32_lab/.tools/bundles/ninja/1.13.2+st.1/bin;$penv{PATH}",
+        "CUBE_BUNDLE_PATH": "C:/Users/tjgus/stm32_lab/.tools/bundles",
+        "CUBE_CACHE_PATH": "${sourceDir}/build/tool-cache",
+        "CUBE_LOG_PATH": "${sourceDir}/build/tool-logs"
+      }
+    },
+    {
+      "name": "Debug",
+      "inherits": "default",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "STM32_3_TASK": "8",
+        "STM32_3_RX": "0",
+        "SPI_CYCLE_PATTERNS": "1",
+        "SPI_TEST_BYTE": "0x55"
+      }
+    },
+    {
+      "name": "Release",
+      "inherits": "default",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "STM32_3_TASK": "8",
+        "STM32_3_RX": "0",
+        "SPI_CYCLE_PATTERNS": "1",
+        "SPI_TEST_BYTE": "0x55"
+      }
+    },
+    {
+      "name": "Task8",
+      "displayName": "STM32_3 과제 8: MCU SPI 송신 파형",
+      "inherits": "default",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "STM32_3_TASK": "8",
+        "STM32_3_RX": "0",
+        "SPI_CYCLE_PATTERNS": "1",
+        "SPI_TEST_BYTE": "0x55"
+      }
+    },
+    {
+      "name": "Task9_TX",
+      "displayName": "STM32_3 과제 9: MCU 송신 (마스터)",
+      "inherits": "default",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "STM32_3_TASK": "9",
+        "STM32_3_RX": "0",
+        "SPI_CYCLE_PATTERNS": "1",
+        "SPI_TEST_BYTE": "0x55"
+      }
+    },
+    {
+      "name": "Task9_RX",
+      "displayName": "STM32_3 과제 9: MCU 수신 (슬레이브)",
+      "inherits": "default",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "STM32_3_TASK": "9",
+        "STM32_3_RX": "1",
+        "SPI_CYCLE_PATTERNS": "1",
+        "SPI_TEST_BYTE": "0x55"
+      }
+    },
+    {
+      "name": "Task10",
+      "displayName": "STM32_3 과제 10: MCU에서 FPGA로 SPI 송신",
+      "inherits": "default",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "STM32_3_TASK": "10",
+        "STM32_3_RX": "0",
+        "SPI_CYCLE_PATTERNS": "1",
+        "SPI_TEST_BYTE": "0x55"
+      }
+    },
+    {
+      "name": "Task11",
+      "displayName": "STM32_3 과제 11: FPGA에서 MCU로 SPI 수신",
+      "inherits": "default",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "STM32_3_TASK": "11",
+        "STM32_3_RX": "1",
+        "SPI_CYCLE_PATTERNS": "1",
+        "SPI_TEST_BYTE": "0x55"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "Debug",
+      "configurePreset": "Debug"
+    },
+    {
+      "name": "Release",
+      "configurePreset": "Release"
+    },
+    {
+      "name": "Task8",
+      "configurePreset": "Task8"
+    },
+    {
+      "name": "Task9_TX",
+      "configurePreset": "Task9_TX"
+    },
+    {
+      "name": "Task9_RX",
+      "configurePreset": "Task9_RX"
+    },
+    {
+      "name": "Task10",
+      "configurePreset": "Task10"
+    },
+    {
+      "name": "Task11",
+      "configurePreset": "Task11"
+    }
+  ]
 }
